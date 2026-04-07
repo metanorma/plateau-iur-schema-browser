@@ -1,0 +1,7 @@
+# Build artifacts
+*.lxr
+*.html
+!.gitkeep
+
+# OS files
+.DS_Store
