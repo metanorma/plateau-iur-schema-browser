@@ -27,6 +27,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Clone lutaml-xsd
+        run: git clone --depth 1 https://github.com/lutaml/lutaml-xsd.git
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:

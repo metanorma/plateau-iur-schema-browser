@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "lutaml-xsd", github: "lutaml/lutaml-xsd", branch: "rt-add-schemalocation-mapping"
+gem "lutaml-xsd", path: "lutaml-xsd"
 gem "lutaml-model", github: "lutaml/lutaml-model", branch: "main"
 gem "base64"
 gem "canon"
