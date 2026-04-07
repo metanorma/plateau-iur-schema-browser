@@ -27,45 +27,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Clone lutaml-xsd
-        run: |
-          git clone --depth 1 https://github.com/lutaml/lutaml-xsd.git
-          git clone --depth 1 https://github.com/lutaml/lutaml-model.git
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
           bundler-cache: true
           cache-version: 0
-          working-directory: lutaml-xsd
 
       - name: Install dependencies
-        run: |
-          cd lutaml-xsd
-          bundle install
+        run: bundle install
 
       - name: Build LXR package
-        run: |
-          cd lutaml-xsd
-          bundle exec ruby exe/lutaml-xsd build from-config ${{ github.workspace }}/config.yml --output ${{ github.workspace }}/urban_function.lxr
+        run: bundle exec lutaml-xsd build from-config config.yml --output urban_function.lxr
 
       - name: Generate SPA documentation
-        run: |
-          cd lutaml-xsd
-          bundle exec ruby exe/lutaml-xsd doc spa ${{ github.workspace }}/urban_function.lxr --mode vue_inlined --output ${{ github.workspace }}/urban_function_docs.html
+        run: bundle exec lutaml-xsd doc spa urban_function.lxr --mode vue_inlined --output urban_function_docs.html
 
       - name: Prepare artifact
         run: |
-          mkdir -p ${{ github.workspace }}/_site
-          cp ${{ github.workspace }}/urban_function_docs.html ${{ github.workspace }}/_site/index.html
-          cp -r ${{ github.workspace }}/images ${{ github.workspace }}/_site/
-          cp ${{ github.workspace }}/images/favicon/* ${{ github.workspace }}/_site/
+          mkdir -p _site
+          cp urban_function_docs.html _site/index.html
+          cp -r images _site/
+          cp images/favicon/* _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ${{ github.workspace }}/_site
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
