@@ -37,6 +37,12 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
+      - name: Build frontend SPA assets
+        run: |
+          cd lutaml-xsd/frontend
+          npm install
+          npm run build
+
       - name: Build LXR package
         run: bundle exec ruby $(bundle show lutaml-xsd)/exe/lutaml-xsd build from-config config.yml --output urban_function.lxr
 
