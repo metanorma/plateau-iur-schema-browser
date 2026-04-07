@@ -38,10 +38,10 @@ jobs:
         run: bundle install
 
       - name: Build LXR package
-        run: bundle exec lutaml-xsd build from-config config.yml --output urban_function.lxr
+        run: bundle exec ruby $(bundle show lutaml-xsd)/exe/lutaml-xsd build from-config config.yml --output urban_function.lxr
 
       - name: Generate SPA documentation
-        run: bundle exec lutaml-xsd doc spa urban_function.lxr --mode vue_inlined --output urban_function_docs.html
+        run: bundle exec ruby $(bundle show lutaml-xsd)/exe/lutaml-xsd doc spa urban_function.lxr --mode vue_inlined --output urban_function_docs.html
 
       - name: Prepare artifact
         run: |
