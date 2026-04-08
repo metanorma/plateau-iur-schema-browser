@@ -23,16 +23,16 @@ metadata:
 
   # External documentation links
   links:
-    - name: "Getting Started"
-      url: "https://lutaml.github.io/lutaml-xsd/getting-started"
-    - name: "API Reference"
-      url: "https://lutaml.github.io/lutaml-xsd/api"
-    - name: "Examples"
-      url: "https://lutaml.github.io/lutaml-xsd/examples"
     - name: "Homepage"
-      url: "https://www.geospatial.jp/iur/"
+      url: "https://www.mlit.go.jp/plateau/"
     - name: "Repository"
-      url: "https://github.com/lutaml/lutaml-xsd"
+      url: "https://github.com/metanorma/plateau-iur-schema-browser"
+    - name: "API Reference"
+      url: "https://github.com/Project-PLATEAU"
+    - name: "Examples"
+      url: "https://github.com/Project-PLATEAU"
+    - name: "Get Started with LutaML XSD"
+      url: "https://lutaml.github.io/lutaml-xsd/getting-started"
 
 # === Build Options ===
 build:
