@@ -1,11 +1,11 @@
 # === Package Metadata ===
 metadata:
-  name: "i-UR Urban Function Schemas"
-  version: "3.2.0"
-  title: "i-UR Urban Function"           # Display name (used in SPA header)
+  name: "PLATEAU Schema Browser"
+  version: "1.0.0"
+  title: "PLATEAU Schema Browser"           # Display name (used in SPA header)
   description: >
-    Japanese international Urban Revitalization (i-UR) standard schemas
-    for urban planning data exchange.
+    Interactive documentation browser for Project PLATEAU XML schemas including
+    i-UR (international Urban Revitalization) and FGD (Fundamental Geospatial Data).
   license: "PLATEAU license"               # SPDX license identifier
   license_url: "https://www.mlit.go.jp/plateau/faq/"  # Custom license URL (optional)
   authors:                                 # Array of authors
@@ -18,8 +18,10 @@ metadata:
     - urban-planning
     - gml
     - japan
-    - i-ur
     - geospatial
+    - i-ur
+    - fgd
+    - plt
 
   # External documentation links
   links:
@@ -44,6 +46,8 @@ build:
 files:
   - schemas/i-ur/urbanFunction.xsd
   - schemas/i-ur/urbanObject.xsd
+  - schemas/fgd/FGD_GMLSchema.xsd
+  - schemas/jmp/jmp20.xsd
 
 # === Schema Location Mappings ===
 schema_location_mappings:
@@ -93,7 +97,7 @@ schema_location_mappings:
     pattern: true
 
   # Map GML 3.1.1 base/gml.xsd specifically (3.1.1 not available, map to 3.2.1 gml.xsd)
-  - from: '^http://schemas\.opengis\.net/gml/3\.1\.1/base/gml\.xsd$'
+  - from: 'http://schemas.opengis.net/gml/3.1.1/base/gml.xsd'
     to: schemas/codesynthesis-gml-3.2.1/gml/3.2.1/gml.xsd
     pattern: false
 
@@ -103,14 +107,21 @@ schema_location_mappings:
     pattern: true
 
   # Map xAL HTTP URLs to local files (used by CityGML)
-  - from: '^http://docs\.oasis-open\.org/election/external/xAL\.xsd$'
+  - from: 'http://docs.oasis-open.org/election/external/xAL.xsd'
     to: schemas/citygml/xAL/xAL.xsd
     pattern: false
+
+  # Map GML 3.2.1 HTTP URLs to local files (used by FGD)
+  - from: '^http://schemas\.opengis\.net/gml/3\.2\.1/(.+\.xsd)$'
+    to: schemas/codesynthesis-gml-3.2.1/gml/3.2.1/\1
+    pattern: true
 
 # === Namespace Mappings ===
 namespace_mappings:
   - prefix: "xs"
     uri: "http://www.w3.org/2001/XMLSchema"
+  - prefix: "fgd"
+    uri: "http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema"
   - prefix: "urf"
     uri: "https://www.geospatial.jp/iur/urf/3.2"
   - prefix: "uro"
@@ -119,6 +130,8 @@ namespace_mappings:
     uri: "http://www.opengis.net/gml/3.2"
   - prefix: "xlink"
     uri: "http://www.w3.org/1999/xlink"
+  - prefix: "jmp"
+    uri: "http://zgate.gsi.go.jp/ch/jmp/"
 
 # === Appearance (for SPA) ===
 appearance:
