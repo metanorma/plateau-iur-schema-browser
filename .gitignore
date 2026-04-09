@@ -5,3 +5,8 @@
 
 # OS files
 .DS_Store
+
+Gemfile.lock
+
+# This is dynamically checked-out so we can build frontend/dist
+lutaml-xsd/
